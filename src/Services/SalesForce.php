@@ -23,9 +23,9 @@ class SalesForce {
      * Saves the data from Salesforce
      *
      * @param string $data JSon format string
-     * @return boolean true on success or false on failure
+     * @return void
      */
-    public function save_token( string $data ) {
+    public function save_token( string $data ): void {
         update_option( $this::RTSC_TOKEN_OPTION, $data );
     }
 
@@ -86,12 +86,12 @@ class SalesForce {
         $response = json_decode( $body );
 
         if ( isset( $response->access_token ) ) {
-            // Add time
-            $response->time = current_time( 'mysql', 1 );
+            // Add time.
+            $response->time = current_time( 'mysql', true );
             $token_json     = json_encode( $response );
             $this->save_token( $token_json );
 
-            return $response;
+            return $body;
         }
 
         return false;
@@ -148,7 +148,7 @@ class SalesForce {
         $body = array(
             'client_id'     => RTSC_SALESFORCE_CLIENT_ID,
             'client_secret' => RTSC_SALESFORCE_CLIENT_SECRET,
-            'redirect_uri'  => self::RTSC_SALESFORCE_CALLBACK,
+            'redirect_uri'  => admin_url( RTSC_SALESFORCE_ADMIN_PAGE ),
             'grant_type'    => 'refresh_token',
             'refresh_token' => $refresh_token,
         );
@@ -157,7 +157,7 @@ class SalesForce {
         $headers = array(
             'Content-Type : application/x-www-form-urlencoded',
             'Accept: application/json',
-            'content-length: ' . ! empty( $body ) ? strlen( $body ) : 0,
+            'content-length: ' . strlen( $body ),
         );
 
         $endpoint = self::RTSC_SALESFORCE_AUTH_ENDPOINT . '/token';
@@ -183,7 +183,7 @@ class SalesForce {
             return false;
         }
 
-        $response->time          = current_time( 'mysql', 1 );
+        $response->time          = current_time( 'mysql', true );
         $response->refresh_token = $refresh_token;
 
         $json_info = json_encode( $response );
@@ -212,7 +212,7 @@ class SalesForce {
         $headers = array(
             'Content-Type: application/x-www-form-urlencoded',
             'Accept: application/json',
-            'content-length: ' . ! empty( $body ) ? strlen( $body ) : 0,
+            'content-length: ' . strlen( $body ),
         );
 
         $endpoint = $data->instance_url . '/services/oauth2/revoke';

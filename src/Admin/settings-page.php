@@ -12,7 +12,8 @@ use RTahina\SalesforceConnector\Services\SalesForce;
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-
+$rtsc_code       = '';
+$rtsc_state      = '';
 $rtsc_salesforce = new SalesForce();
 
 $rtsc_tab = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'connect';
@@ -24,9 +25,9 @@ if ( isset( $_POST['rtsc_revoke_sf_token'] ) && wp_verify_nonce( $_POST['rtsc_re
 }
 
 // Parameters from SalesForce.
-if ( isset( $_GET['code'] ) && isset( $_GET['state'] ) ) {
-    $rtsc_code  = sanitize_text_field( wp_unslash( $_GET['code'] ?? '' ) );
-    $rtsc_state = sanitize_text_field( wp_unslash( $_GET['state'] ?? '' ) );
+if ( ! empty( $_GET['code'] ) && ! empty( $_GET['state'] ) ) {
+    $rtsc_code  = sanitize_key( wp_unslash( $_GET['code'] ) );
+    $rtsc_state = sanitize_key( wp_unslash( $_GET['state'] ) );
 
     if ( admin_url( RTSC_SALESFORCE_ADMIN_PAGE ) === $rtsc_state ) {
         $rtsc_salesforce->get_token( $rtsc_code );

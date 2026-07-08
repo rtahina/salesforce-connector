@@ -39,9 +39,9 @@ class SalesForceConnector {
      *
      * Return an instance of SalesForceConnector
      *
-     * @return self.
+     * @return SalesForceConnector
      */
-    public static function get_instance(): self {
+    public static function get_instance(): SalesForceConnector {
         if ( null === self::$instance ) {
             self::$instance = new self();
         }
@@ -54,9 +54,9 @@ class SalesForceConnector {
      *
      * Runs: hooks, admin pages, text domain...
      *
-     * @return void.
+     * @return void
      */
-    public function run() {
+    public function run(): void {
         $this->load_language( RTSC_TEXT_DOMAIN );
         $this->hooks();
     }
@@ -70,7 +70,7 @@ class SalesForceConnector {
      * @param string $domain The plugin text domain
      * @return  void
      */
-    public function load_language( string $domain ) {
+    public function load_language( string $domain ): void {
         load_plugin_textdomain(
             $domain,
             false,
@@ -83,9 +83,9 @@ class SalesForceConnector {
      *
      * Fires hooks
      *
-     * @return void.
+     * @return void
      */
-    protected function hooks() {
+    protected function hooks(): void {
         // 1. Register a submenu page.
         add_action(
             'admin_menu',
@@ -129,9 +129,9 @@ class SalesForceConnector {
      *
      * Retrieve the admin page template
      *
-     * @return void.
+     * @return void
      */
-    public function admin_page() {
+    public function admin_page(): void {
         // Verify if we are in the admin area and the current user has permission.
         if ( is_admin() && ! Utilities::current_user_can( 'manage_options' ) ) {
             wp_die( 'You do not have permission to access this page.' );
