@@ -7,6 +7,8 @@
 
 namespace RTahina\SalesforceConnector\Services;
 
+use RTahina\SalesforceConnector\DTOs\SalesForceConfig;
+
 /**
  * SalesForce class
  *
@@ -17,6 +19,7 @@ namespace RTahina\SalesforceConnector\Services;
 class SalesForce {
 
     protected const RTSC_TOKEN_OPTION             = 'rtsc_salesforce_token';
+    protected const RTSC_CONFIG_OPTION            = 'rtsc_salesforce_config';
     protected const RTSC_SALESFORCE_AUTH_ENDPOINT = 'https://login.salesforce.com/services/oauth2';
 
     /**
@@ -250,5 +253,31 @@ class SalesForce {
         }
 
         return false;
+    }
+
+    /**
+     * Saves the salesforce config
+     *
+     * @param SalesForceConfig $config SalesForce configuration object
+     * @return bool
+     */
+    public function save_config( SalesForceConfig $config ): bool {
+        return update_option( $this::RTSC_CONFIG_OPTION, $config );
+    }
+
+    /**
+     * Gets the salesforce config
+     *
+     * @param string $config SalesForce configuration object
+     * @return SalesForceConfig|bool
+     */
+    public function get_config(): SalesForceConfig|bool {
+        $config = get_option( $this::RTSC_CONFIG_OPTION );
+
+        if ( false === $config ) {
+            return new SalesForceConfig();
+        }
+
+        return $config;
     }
 }

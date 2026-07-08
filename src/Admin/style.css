@@ -37,3 +37,13 @@
     row-gap: 1em;
     margin-bottom: 0.5rem;
 }
+
+.rtsc_tab-content .row label {
+    width: 100%;
+}
+
+.rtsc_tab-content .row textarea {
+    width: 50%;
+    height: 30%;
+    font-weight: normal;
+}
