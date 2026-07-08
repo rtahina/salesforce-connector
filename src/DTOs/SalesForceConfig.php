@@ -19,7 +19,7 @@ final readonly class SalesForceConfig {
 // phpcs:disable Squiz.Commenting.FunctionComment.Missing
     public function __construct(
         public string $client_id = '',
-        public string $consumer_key = '',
+        public string $client_secret = '',
         public string $code_challenge = '',
         public string $code_verifier = ''
     ) {}

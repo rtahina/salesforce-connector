@@ -30,27 +30,12 @@ if ( isset( $_POST['rtsc_revoke_sf_token'] ) && wp_verify_nonce( $_POST['rtsc_re
 
 // Parameters from SalesForce upon authoriation code request.
 if ( isset( $_GET['code'] ) && isset( $_GET['state'] ) ) {
-    $rtsc_code  = sanitize_key( wp_unslash( $_GET['code'] ) );
-    $rtsc_state = sanitize_key( wp_unslash( $_GET['state'] ) );
+    $rtsc_code  = sanitize_text_field( wp_unslash( $_GET['code'] ) );
+    $rtsc_state = sanitize_text_field( wp_unslash( $_GET['state'] ) );
 
     if ( admin_url( RTSC_SALESFORCE_ADMIN_PAGE ) === $rtsc_state ) {
         $rtsc_salesforce->get_token( $rtsc_code );
     }
-}
-
-// Saving the keys.
-if ( isset( $_POST['rtsc-sf-save-keys'] ) ) {
-    // Check nonce.
-    if ( ! wp_verify_nonce( $_POST['rtsc_save-salesfoce-config-nonce'], 'rtsc_save-salesfoce-config' ) ) {
-        wp_die( __( 'You are not allowed to submit this form.', 'rtahina-salesforce-connector' ) );
-    }
-
-    $rtsc_client_id      = sanitize_text_field( wp_unslash( $_POST['rtsc-sf-client-id'] ) ) ?? '';
-    $rtsc_consumer_key   = sanitize_text_field( wp_unslash( $_POST['rtsc-sf-consumer-key'] ) ) ?? '';
-    $rtsc_code_challenge = sanitize_text_field( wp_unslash( $_POST['rtsc-sf-code-challenge'] ) ) ?? '';
-    $rtsc_code_verifier  = sanitize_text_field( wp_unslash( $_POST['rtsc-sf-code-verifier'] ) ) ?? '';
-    $rtsc_config         = new SalesForceConfig( $rtsc_client_id, $rtsc_consumer_key, $rtsc_code_challenge, $rtsc_code_verifier );
-    $rtsc_salesforce->save_config( $rtsc_config );
 }
 
 $rtsc_token_info = $rtsc_salesforce->get_token_info();
@@ -107,25 +92,25 @@ $rtsc_token_info = $rtsc_salesforce->get_token_info();
                 <?php wp_nonce_field( 'rtsc_save-salesfoce-config', 'rtsc_save-salesfoce-config-nonce' ); ?>
                 <div class="row">
                     <label for="rtsc-sf-client-id">
-                        SalesForce Client ID
+                        SalesForce Client ID*
                         <textarea id="rtsc-sf-client-id" name="rtsc-sf-client-id"><?php echo esc_html( $rtsc_config->client_id ); ?></textarea>
                     </label>
                 </div>
                 <div class="row">
-                    <label for="rtsc-sf-consumer-key">
-                        SalesForce Consumer Key
-                        <textarea id="rtsc-sf-consumer-key" name="rtsc-sf-consumer-key"><?php echo esc_html( $rtsc_config->consumer_key ); ?></textarea>
+                    <label for="rtsc-sf-client-secret">
+                        SalesForce Client Secret*
+                        <textarea id="rtsc-sf-client-secret" name="rtsc-sf-client-secret"><?php echo esc_html( $rtsc_config->client_secret ); ?></textarea>
                     </label>
                 </div>
                 <div class="row">
                     <label for="rtsc-sf-code-challenge">
-                        Code Challenge
+                        Code Challenge*
                         <textarea id="rtsc-sf-code-challenge" name="rtsc-sf-code-challenge"><?php echo esc_html( $rtsc_config->code_challenge ); ?></textarea>
                     </label>
                 </div>
                 <div class="row">
                     <label for="rtsc-sf-code-verifier">
-                        Code Verifier
+                        Code Verifier*
                         <textarea id="rtsc-sf-code-verifier" name="rtsc-sf-code-verifier"><?php echo esc_html( $rtsc_config->code_verifier ); ?></textarea>
                     </label>
                 </div>

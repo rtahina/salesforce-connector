@@ -18,8 +18,8 @@ use RTahina\SalesforceConnector\DTOs\SalesForceConfig;
  */
 class SalesForce {
 
-    protected const RTSC_TOKEN_OPTION             = 'rtsc_salesforce_token';
-    protected const RTSC_CONFIG_OPTION            = 'rtsc_salesforce_config';
+    protected const RTSC_TOKEN_OPTION             = '_rtsc_salesforce_token';
+    protected const RTSC_CONFIG_OPTION            = '_rtsc_salesforce_config';
     protected const RTSC_SALESFORCE_AUTH_ENDPOINT = 'https://login.salesforce.com/services/oauth2';
 
     /**
