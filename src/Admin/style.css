@@ -47,3 +47,8 @@
     height: 30%;
     font-weight: normal;
 }
+
+/* colors */
+.error {
+    color: red;
+}

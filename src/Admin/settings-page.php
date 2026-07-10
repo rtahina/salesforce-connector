@@ -43,7 +43,7 @@ $rtsc_token_info = $rtsc_salesforce->get_token_info();
 
 <div class="wrap">
     <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-
+    
     <nav class="nav-tab-wrapper">  
         <a 
             href="<?php echo esc_url( admin_url( RTSC_SALESFORCE_ADMIN_PAGE ) ); ?>&tab=connect" 
@@ -68,6 +68,9 @@ $rtsc_token_info = $rtsc_salesforce->get_token_info();
     
     <div class="rtsc_tab-content">
         <?php if ( 'connect' === $rtsc_tab ) { ?>
+            <?php if ( '' === $rtsc_config->client_id ) : ?>
+                <p>The SalesForce configuration is missing. Please, go to the <a href="<?php echo esc_url( admin_url( RTSC_SALESFORCE_ADMIN_PAGE ) ); ?>&tab=keys">Key & Secret</a> tab and fill up the required fields.</p>
+            <?php endif; ?>    
             <?php if ( false === SalesForce::isValidTokenInfo( $rtsc_token_info ) ) : ?>
                 <p>Connect to SalesForce to be able to use the plugin</p>
                 <p>
@@ -92,30 +95,31 @@ $rtsc_token_info = $rtsc_salesforce->get_token_info();
                 <?php wp_nonce_field( 'rtsc_save-salesfoce-config', 'rtsc_save-salesfoce-config-nonce' ); ?>
                 <div class="row">
                     <label for="rtsc-sf-client-id">
-                        SalesForce Client ID*
+                        SalesForce Client ID
                         <textarea id="rtsc-sf-client-id" name="rtsc-sf-client-id"><?php echo esc_html( $rtsc_config->client_id ); ?></textarea>
                     </label>
                 </div>
                 <div class="row">
                     <label for="rtsc-sf-client-secret">
-                        SalesForce Client Secret*
+                        SalesForce Client Secret
                         <textarea id="rtsc-sf-client-secret" name="rtsc-sf-client-secret"><?php echo esc_html( $rtsc_config->client_secret ); ?></textarea>
                     </label>
                 </div>
                 <div class="row">
                     <label for="rtsc-sf-code-challenge">
-                        Code Challenge*
+                        Code Challenge
                         <textarea id="rtsc-sf-code-challenge" name="rtsc-sf-code-challenge"><?php echo esc_html( $rtsc_config->code_challenge ); ?></textarea>
                     </label>
                 </div>
                 <div class="row">
                     <label for="rtsc-sf-code-verifier">
-                        Code Verifier*
+                        Code Verifier
                         <textarea id="rtsc-sf-code-verifier" name="rtsc-sf-code-verifier"><?php echo esc_html( $rtsc_config->code_verifier ); ?></textarea>
                     </label>
                 </div>
-                <input type="submit" name="rtsc-sf-save-keys" class="button button-primary" value="Save keys">
+                <input type="submit" name="rtsc-sf-save-keys" class="button button-primary" value="Save Configuration">
             </form>
+            <p><small class="error">All fields are required</small></p>
         <?php } ?>
     </div>
 </div>
