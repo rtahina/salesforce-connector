@@ -1,5 +1,8 @@
 parameters:
     level: 5
+
+    bootstrapFiles:
+        - salesforce-connector.php
     
     paths:
         - src

@@ -54,13 +54,14 @@ class SalesForce {
      * @return string|false $response Json format response on success or false on failure
      */
     protected function get_initial_token( string $code ): mixed {
+        $config = $this->get_config();
         $params = array(
             'grant_type'    => 'authorization_code',
             'code'          => $code,
-            'client_id'     => RTSC_SALESFORCE_CLIENT_ID,
-            'client_secret' => RTSC_SALESFORCE_CLIENT_SECRET,
+            'client_id'     => $config->client_id,
+            'client_secret' => $config->client_secret,
             'redirect_uri'  => admin_url( RTSC_SALESFORCE_ADMIN_PAGE ),
-            'code_verifier' => RTSC_SALESFORCE_CODE_VERIFIER,
+            'code_verifier' => $config->code_verifier,
         );
         $params = http_build_query( $params );
 
@@ -101,15 +102,16 @@ class SalesForce {
     }
 
     public function login_url(): string {
+        $config = $this->get_config();
         $arr    = array();
         $params = array(
             'response_type'         => 'code',
             'state'                 => admin_url( RTSC_SALESFORCE_ADMIN_PAGE ),
-            'client_id'             => RTSC_SALESFORCE_CLIENT_ID,
+            'client_id'             => $config->client_id,
             'redirect_uri'          => admin_url( RTSC_SALESFORCE_ADMIN_PAGE ),
             'scope'                 => 'api+refresh_token',
             'code_challenge_method' => 'S256',
-            'code_challenge'        => RTSC_SALESFORCE_CODE_CHALLENGE,
+            'code_challenge'        => $config->code_challenge,
         );
 
         foreach ( $params as $key => $val ) {
@@ -147,10 +149,11 @@ class SalesForce {
 
         $data          = json_decode( $token_info );
         $refresh_token = $data->refresh_token;
+        $config        = ( new self() )->get_config();
 
         $body = array(
-            'client_id'     => RTSC_SALESFORCE_CLIENT_ID,
-            'client_secret' => RTSC_SALESFORCE_CLIENT_SECRET,
+            'client_id'     => $config->client_id,
+            'client_secret' => $config->client_secret,
             'redirect_uri'  => admin_url( RTSC_SALESFORCE_ADMIN_PAGE ),
             'grant_type'    => 'refresh_token',
             'refresh_token' => $refresh_token,
@@ -268,7 +271,6 @@ class SalesForce {
     /**
      * Gets the salesforce config
      *
-     * @param string $config SalesForce configuration object
      * @return SalesForceConfig|bool
      */
     public function get_config(): SalesForceConfig|bool {
