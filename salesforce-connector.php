@@ -25,6 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 use RTahina\SalesforceConnector\SalesForceConnector;
 
 define( 'RTSC_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define( 'RTSC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'RTSC_TEXT_DOMAIN', 'rtahina-salesforce-connector' );
 define( 'RTSC_NONCE_ACTION', 'rtsc_admin_action' );
 define( 'RTSC_NONCE_NAME', 'rtsc_admin_nonce' );
