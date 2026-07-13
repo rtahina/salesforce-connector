@@ -60,7 +60,7 @@ class SalesForce {
             'code'          => $code,
             'client_id'     => $config->client_id,
             'client_secret' => $config->client_secret,
-            'redirect_uri'  => admin_url( RTSC_SALESFORCE_ADMIN_PAGE ),
+            'redirect_uri'  => RTSC_SALESFORCE_CALLBACK,
             'code_verifier' => $config->code_verifier,
         );
         $params = http_build_query( $params );
@@ -106,9 +106,9 @@ class SalesForce {
         $arr    = array();
         $params = array(
             'response_type'         => 'code',
-            'state'                 => admin_url( RTSC_SALESFORCE_ADMIN_PAGE ),
+            'state'                 => RTSC_SALESFORCE_CALLBACK,
             'client_id'             => $config->client_id,
-            'redirect_uri'          => admin_url( RTSC_SALESFORCE_ADMIN_PAGE ),
+            'redirect_uri'          => RTSC_SALESFORCE_CALLBACK,
             'scope'                 => 'api+refresh_token',
             'code_challenge_method' => 'S256',
             'code_challenge'        => $config->code_challenge,
@@ -154,7 +154,7 @@ class SalesForce {
         $body = array(
             'client_id'     => $config->client_id,
             'client_secret' => $config->client_secret,
-            'redirect_uri'  => admin_url( RTSC_SALESFORCE_ADMIN_PAGE ),
+            'redirect_uri'  => RTSC_SALESFORCE_CALLBACK,
             'grant_type'    => 'refresh_token',
             'refresh_token' => $refresh_token,
         );

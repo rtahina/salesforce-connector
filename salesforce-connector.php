@@ -28,7 +28,8 @@ define( 'RTSC_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'RTSC_TEXT_DOMAIN', 'rtahina-salesforce-connector' );
 define( 'RTSC_NONCE_ACTION', 'rtsc_admin_action' );
 define( 'RTSC_NONCE_NAME', 'rtsc_admin_nonce' );
-define( 'RTSC_SALESFORCE_ADMIN_PAGE', 'admin.php?page=rtahina-salesforce-connector' );
+define( 'RTSC_SALESFORCE_CALLBACK', get_site_url() . '/rtsc-salesforce-callback/' );
+define( 'RTSC_SALESFORCE_ADMIN_PAGE', admin_url() . 'admin.php?page=rtahina-salesforce-connector' );
 
 // Autoload file.
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
@@ -42,3 +43,19 @@ function rtsc_bootstrap() {
 }
 
 rtsc_bootstrap();
+
+register_activation_hook(
+    __FILE__,
+    function () {
+        flush_rewrite_rules( false );
+        delete_option( 'rewrite_rules' );
+    }
+);
+
+register_deactivation_hook(
+    __FILE__,
+    function () {
+        flush_rewrite_rules( false );
+        delete_option( 'rewrite_rules' );
+    }
+);

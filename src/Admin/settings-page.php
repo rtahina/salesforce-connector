@@ -7,7 +7,6 @@
 
 namespace RTahina\SalesforceConnector;
 
-use RTahina\SalesforceConnector\DTOs\SalesForceConfig;
 use RTahina\SalesforceConnector\Services\SalesForce;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -28,16 +27,6 @@ if ( isset( $_POST['rtsc_revoke_sf_token'] ) && wp_verify_nonce( $_POST['rtsc_re
     exit();
 }
 
-// Parameters from SalesForce upon authoriation code request.
-if ( isset( $_GET['code'] ) && isset( $_GET['state'] ) ) {
-    $rtsc_code  = sanitize_text_field( wp_unslash( $_GET['code'] ) );
-    $rtsc_state = sanitize_text_field( wp_unslash( $_GET['state'] ) );
-
-    if ( admin_url( RTSC_SALESFORCE_ADMIN_PAGE ) === $rtsc_state ) {
-        $rtsc_salesforce->get_token( $rtsc_code );
-    }
-}
-
 $rtsc_token_info = $rtsc_salesforce->get_token_info();
 ?>
 
@@ -46,7 +35,7 @@ $rtsc_token_info = $rtsc_salesforce->get_token_info();
     
     <nav class="nav-tab-wrapper">  
         <a 
-            href="<?php echo esc_url( admin_url( RTSC_SALESFORCE_ADMIN_PAGE ) ); ?>&tab=connect" 
+            href="<?php echo esc_url( RTSC_SALESFORCE_ADMIN_PAGE ); ?>&tab=connect" 
             class="nav-tab 
             <?php
             if ( 'connect' === $rtsc_tab ) :
@@ -56,7 +45,7 @@ $rtsc_token_info = $rtsc_salesforce->get_token_info();
             Connect
         </a>  
         <a 
-            href="<?php echo esc_url( admin_url( RTSC_SALESFORCE_ADMIN_PAGE ) ); ?>&tab=keys" 
+            href="<?php echo esc_url( RTSC_SALESFORCE_ADMIN_PAGE ); ?>&tab=keys" 
             class="nav-tab 
             <?php
             if ( 'keys' === $rtsc_tab ) :
