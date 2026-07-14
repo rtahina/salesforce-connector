@@ -12,7 +12,6 @@ use RTahina\SalesforceConnector\Hooks\AdminNoticesHook;
 use RTahina\SalesforceConnector\Hooks\AssetsHook;
 use RTahina\SalesforceConnector\Hooks\SalesForceCallbackHook;
 use RTahina\SalesforceConnector\Hooks\SaveSalesForceConfigHook;
-use RTahina\SalesforceConnector\Services\SalesForce;
 
 /**
  * SalesForceConnector class
