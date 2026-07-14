@@ -42,7 +42,7 @@ $rtsc_token_info = $rtsc_salesforce->get_token_info();
                 ?>
                 nav-tab-active<?php endif; ?>"
         >
-            Connect
+            <?php _e( 'Connect', 'rtahina-salesforce-connector' ); ?>
         </a>  
         <a 
             href="<?php echo esc_url( RTSC_SALESFORCE_ADMIN_PAGE ); ?>&tab=keys" 
@@ -51,7 +51,7 @@ $rtsc_token_info = $rtsc_salesforce->get_token_info();
             if ( 'keys' === $rtsc_tab ) :
                 ?>
                 nav-tab-active<?php endif; ?>">
-            Key & Secret    
+            <?php _e( 'Key & Secret', 'rtahina-salesforce-connector' ); ?>
         </a>  
     </nav> 
     
@@ -61,15 +61,15 @@ $rtsc_token_info = $rtsc_salesforce->get_token_info();
                 <p>The SalesForce configuration is missing. Please, go to the <a href="<?php echo esc_url( admin_url( RTSC_SALESFORCE_ADMIN_PAGE ) ); ?>&tab=keys">Key & Secret</a> tab and fill up the required fields.</p>
             <?php endif; ?>    
             <?php if ( false === SalesForce::isValidTokenInfo( $rtsc_token_info ) ) : ?>
-                <p>Connect to SalesForce to be able to use the plugin</p>
+                <p><?php _e( 'Connect to SalesForce to be able to use the plugin', 'rtahina-salesforce-connector' ); ?></p>
                 <p>
                     <a href="<?php echo esc_url( $rtsc_salesforce->login_url() ); ?>">Login to SalesForce</a>
                 </p>
             <?php else : ?>
-                <p>Currently connected on : 
-                    <pre>Instance URL: <?php echo esc_html( $rtsc_token_info['instance_url'] ); ?></pre>
-                    <pre>Issued at: <?php echo esc_html( $rtsc_token_info['issued_at'] ); ?></pre>
-                    <pre>Token: <?php echo esc_html( $rtsc_token_info['access_token'] ); ?></pre>
+                <p><?php _e( 'Currently connected on :', 'rtahina-salesforce-connector' ); ?> 
+                    <pre><?php _e( 'Instance URL:', 'rtahina-salesforce-connector' ); ?><?php echo esc_html( $rtsc_token_info['instance_url'] ); ?></pre>
+                    <pre><?php _e( 'Issued at:', 'rtahina-salesforce-connector' ); ?> <?php echo esc_html( $rtsc_token_info['issued_at'] ); ?></pre>
+                    <pre><?php _e( 'Token:', 'rtahina-salesforce-connector' ); ?> <?php echo esc_html( $rtsc_token_info['access_token'] ); ?></pre>
                 </p>
                 <p>
                     <form action="" method="post">
@@ -79,36 +79,36 @@ $rtsc_token_info = $rtsc_salesforce->get_token_info();
                 </p>
             <?php endif; ?>
         <?php } elseif ( 'keys' === $rtsc_tab ) { ?>
-            <p>Enter the SalesForce Client ID and the Consumer Secret</p>
+            <p><?php _e( 'Enter the SalesForce Client ID and the Consumer Secret', 'rtahina-salesforce-connector' ); ?></p>
             <form action="<?php echo esc_url( admin_url( RTSC_SALESFORCE_ADMIN_PAGE ) ); ?>&tab=keys" method="POST">
                 <?php wp_nonce_field( 'rtsc_save-salesfoce-config', 'rtsc_save-salesfoce-config-nonce' ); ?>
                 <div class="row">
                     <label for="rtsc-sf-client-id">
-                        SalesForce Client ID
+                        <?php _e( 'SalesForce Client ID', 'rtahina-salesforce-connector' ); ?>
                         <textarea id="rtsc-sf-client-id" name="rtsc-sf-client-id"><?php echo esc_html( $rtsc_config->client_id ); ?></textarea>
                     </label>
                 </div>
                 <div class="row">
                     <label for="rtsc-sf-client-secret">
-                        SalesForce Client Secret
+                        <?php _e( 'SalesForce Client Secret', 'rtahina-salesforce-connector' ); ?>
                         <textarea id="rtsc-sf-client-secret" name="rtsc-sf-client-secret"><?php echo esc_html( $rtsc_config->client_secret ); ?></textarea>
                     </label>
                 </div>
                 <div class="row">
                     <label for="rtsc-sf-code-challenge">
-                        Code Challenge
+                        <?php _e( 'Code Challenge', 'rtahina-salesforce-connector' ); ?>
                         <textarea id="rtsc-sf-code-challenge" name="rtsc-sf-code-challenge"><?php echo esc_html( $rtsc_config->code_challenge ); ?></textarea>
                     </label>
                 </div>
                 <div class="row">
                     <label for="rtsc-sf-code-verifier">
-                        Code Verifier
+                        <?php _e( 'Code Verifier', 'rtahina-salesforce-connector' ); ?>
                         <textarea id="rtsc-sf-code-verifier" name="rtsc-sf-code-verifier"><?php echo esc_html( $rtsc_config->code_verifier ); ?></textarea>
                     </label>
                 </div>
                 <input type="submit" name="rtsc-sf-save-keys" class="button button-primary" value="Save Configuration">
             </form>
-            <p><small class="error">All fields are required</small></p>
+            <p><small class="error"><?php _e( 'All fields are required', 'rtahina-salesforce-connector' ); ?></small></p>
         <?php } ?>
     </div>
 </div>
