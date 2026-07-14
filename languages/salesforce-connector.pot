@@ -1,0 +1,112 @@
+# Copyright (C) 2026 Tahina R.
+# This file is distributed under the same license as the SalesForce Connector plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: RTahina_SalesForce_Connector 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/salesforce-connector\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-14T06:37:28+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: rtahina-salesforce-connector\n"
+
+#. Plugin Name of the plugin
+#: salesforce-connector.php
+msgid "SalesForce Connector"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: salesforce-connector.php
+msgid "https://tahina.dev/"
+msgstr ""
+
+#. Description of the plugin
+#: salesforce-connector.php
+msgid "The SalesForce Connector plugin allows you to connect your SalesForce instance to your WordPress website."
+msgstr ""
+
+#. Author of the plugin
+#: salesforce-connector.php
+msgid "Tahina R."
+msgstr ""
+
+#: src/Admin/settings-page.php:45
+msgid "Connect"
+msgstr ""
+
+#: src/Admin/settings-page.php:54
+msgid "Key & Secret"
+msgstr ""
+
+#: src/Admin/settings-page.php:64
+msgid "Connect to SalesForce to be able to use the plugin"
+msgstr ""
+
+#: src/Admin/settings-page.php:69
+msgid "Currently connected on :"
+msgstr ""
+
+#: src/Admin/settings-page.php:70
+msgid "Instance URL:"
+msgstr ""
+
+#: src/Admin/settings-page.php:71
+msgid "Issued at:"
+msgstr ""
+
+#: src/Admin/settings-page.php:72
+msgid "Token:"
+msgstr ""
+
+#: src/Admin/settings-page.php:82
+msgid "Enter the SalesForce Client ID and the Consumer Secret"
+msgstr ""
+
+#: src/Admin/settings-page.php:87
+msgid "SalesForce Client ID"
+msgstr ""
+
+#: src/Admin/settings-page.php:93
+msgid "SalesForce Client Secret"
+msgstr ""
+
+#: src/Admin/settings-page.php:99
+msgid "Code Challenge"
+msgstr ""
+
+#: src/Admin/settings-page.php:105
+msgid "Code Verifier"
+msgstr ""
+
+#: src/Admin/settings-page.php:111
+msgid "All fields are required"
+msgstr ""
+
+#: src/Hooks/AdminNoticesHook.php:53
+msgid "Settings saved successfully."
+msgstr ""
+
+#: src/Hooks/SaveSalesForceConfigHook.php:45
+msgid "Insufficient permissions."
+msgstr ""
+
+#: src/Hooks/SaveSalesForceConfigHook.php:57
+msgid "Client ID field is required."
+msgstr ""
+
+#: src/Hooks/SaveSalesForceConfigHook.php:61
+msgid "Client Secret field is required."
+msgstr ""
+
+#: src/Hooks/SaveSalesForceConfigHook.php:65
+msgid "Code Challenge field is required."
+msgstr ""
+
+#: src/Hooks/SaveSalesForceConfigHook.php:69
+msgid "Code Verifier field is required."
+msgstr ""

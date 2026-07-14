@@ -7,6 +7,12 @@
 
 namespace RTahina\SalesforceConnector;
 
+use RTahina\SalesforceConnector\Hooks\AdminMenuHooks;
+use RTahina\SalesforceConnector\Hooks\AdminNoticesHook;
+use RTahina\SalesforceConnector\Hooks\AssetsHook;
+use RTahina\SalesforceConnector\Hooks\SalesForceCallbackHook;
+use RTahina\SalesforceConnector\Hooks\SaveSalesForceConfigHook;
+
 /**
  * SalesForceConnector class
  *
@@ -29,8 +35,9 @@ class SalesForceConnector {
     }
 
     // phpcs:disable Squiz.Commenting.FunctionComment.Missing
-    private function __wakeup() {
+    public function __wakeup() {
         // phpcs:enable
+        throw new \Exception( 'Cannot unserialize a singleton.' );
     }
 
     /**
@@ -38,10 +45,10 @@ class SalesForceConnector {
      *
      * Return an instance of SalesForceConnector
      *
-     * @return self.
+     * @return SalesForceConnector
      */
-    public static function get_instance(): self {
-        if (self::$instance === null) {
+    public static function get_instance(): SalesForceConnector {
+        if ( null === self::$instance ) {
             self::$instance = new self();
         }
 
@@ -53,9 +60,42 @@ class SalesForceConnector {
      *
      * Runs: hooks, admin pages, text domain...
      *
-     * @return void.
+     * @return void
      */
-    public function run() {
-        //...
+    public function run(): void {
+        $this->load_language( RTSC_TEXT_DOMAIN );
+        $this->hooks();
+    }
+
+    /**
+     * Loads translation file.
+     *
+     * Accessible to other classes to load different language files (admin and
+     * front-end for example).
+     *
+     * @param string $domain The plugin text domain
+     * @return  void
+     */
+    public function load_language( string $domain ): void {
+        load_plugin_textdomain(
+            $domain,
+            false,
+            RTSC_PLUGIN_PATH . 'languages'
+        );
+    }
+
+    /**
+     * The hooks function.
+     *
+     * Fires hooks
+     *
+     * @return void
+     */
+    protected function hooks(): void {
+        AdminMenuHooks::action();
+        AssetsHook::action();
+        SaveSalesForceConfigHook::action();
+        AdminNoticesHook::action();
+        SalesForceCallbackHook::action();
     }
 }
