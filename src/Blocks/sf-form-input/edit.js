@@ -3,7 +3,6 @@
  */
 
 import {
-	Placeholder,
 	SelectControl,
 	TextControl,
 	ToggleControl,
