@@ -14,7 +14,10 @@ export default function Edit( { attributes, setAttributes } ) {
 		[
 			'rtsc/sf-form-input',
 			{
-				lable: 'Your Email Address',
+				type: 'email',
+				name: 'email',
+				label: 'Your Email Address',
+				placeholder: 'Enter a valid email address',
 				isRequired: true,
 			},
 		],

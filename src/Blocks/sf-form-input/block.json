@@ -11,9 +11,21 @@
 	"supports": {},
 	"parent": [ "rtsc/sf-form" ],
 	"attributes": {
+		"type": {
+			"type": "string",
+			"default": "text"
+		},
+		"name": {
+			"type": "string",
+			"default": "name"
+		},
 		"label": {
 			"type": "string",
 			"default": "Input Label"
+		},
+		"placeholder": {
+			"type": "string",
+			"default": "Enter a value"
 		},
 		"isRequired": {
 			"type": "boolean",
