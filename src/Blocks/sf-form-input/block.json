@@ -6,7 +6,7 @@
 	"title": "SalesForce Form Input Field",
 	"category": "rtsc-blocks",
 	"icon": "text",
-	"description": "SalesForce Block - Form",
+	"description": "This block allows you to insert these types of input: text, email, date, phone number and URL.",
 	"example": {},
 	"supports": {},
 	"parent": [ "rtsc/sf-form" ],

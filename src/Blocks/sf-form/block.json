@@ -6,7 +6,7 @@
 	"title": "SalesForce Form",
 	"category": "rtsc-blocks",
 	"icon": "text",
-	"description": "SalesForce Block - Form",
+	"description": "This block allows you to build the Salesforce form from different input blocks.",
 	"example": {},
 	"supports": {
 		"className": true
