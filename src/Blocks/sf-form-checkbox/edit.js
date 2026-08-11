@@ -18,7 +18,7 @@ import { Fragment } from 'react';
 import { slugify } from '../../Utils/Slugify';
 
 export default function Edit( { attributes, setAttributes, isSelected } ) {
-	const { label, name, isChecked } = attributes;
+	const { label, name, isChecked, isRequired } = attributes;
 	const blockProps = useBlockProps( {
 		className: 'rtsc__inner__form__field',
 	} );
@@ -29,6 +29,7 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 		className: 'rtsc__inner__form__field__checkbox',
 		name: name,
 		checked: isChecked,
+		required: isRequired,
 	};
 
 	return (
@@ -62,6 +63,17 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 						checked={ isChecked }
 						onChange={ ( value ) => {
 							setAttributes( { isChecked: value } );
+						} }
+					/>
+					<ToggleControl
+						__next40pxDefaultSize
+						label="Is This Field Required"
+						help={
+							isRequired ? 'Is required.' : 'Is not required.'
+						}
+						checked={ isRequired }
+						onChange={ ( value ) => {
+							setAttributes( { isRequired: value } );
 						} }
 					/>
 				</InspectorControls>
