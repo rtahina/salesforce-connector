@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "rtsc/sf-form",
+  "version": "1.0.0",
+  "title": "SalesForce Form",
+  "category": "rtsc-blocks",
+  "icon": "text",
+  "description": "SalesForce Block - Form",
+  "example": {},
+  "supports": {
+    "className": true
+  },
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "SalesForce Form Heading"
+    },
+    "content": {
+      "type": "string",
+      "default": "SalesForce Form Description."
+    }
+  },
+  "textdomain": "rtahina-salesforce-connector",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rtsc/sf-form-input",
+	"version": "1.0.0",
+	"title": "SalesForce Form Input Field",
+	"category": "rtsc-blocks",
+	"icon": "text",
+	"description": "SalesForce Block - Form",
+	"example": {},
+	"supports": {},
+	"parent": [ "rtsc/sf-form" ],
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "Input Label"
+		},
+		"isRequired": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"textdomain": "rtahina-salesforce-connector",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

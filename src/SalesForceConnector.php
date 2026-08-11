@@ -10,6 +10,7 @@ namespace RTahina\SalesforceConnector;
 use RTahina\SalesforceConnector\Hooks\AdminMenuHooks;
 use RTahina\SalesforceConnector\Hooks\AdminNoticesHook;
 use RTahina\SalesforceConnector\Hooks\AssetsHook;
+use RTahina\SalesforceConnector\Hooks\BlocksHook;
 use RTahina\SalesforceConnector\Hooks\SalesForceCallbackHook;
 use RTahina\SalesforceConnector\Hooks\SaveSalesForceConfigHook;
 
@@ -97,5 +98,6 @@ class SalesForceConnector {
         SaveSalesForceConfigHook::action();
         AdminNoticesHook::action();
         SalesForceCallbackHook::action();
+        BlocksHook::action();
     }
 }
