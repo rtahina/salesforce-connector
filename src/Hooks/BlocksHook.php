@@ -41,6 +41,7 @@ final class BlocksHook implements HookContract {
     public static function registerBlocks(): void {
         register_block_type( RTSC_PLUGIN_PATH . 'build/blocks/sf-form' );
         register_block_type( RTSC_PLUGIN_PATH . 'build/blocks/sf-form-input' );
+        register_block_type( RTSC_PLUGIN_PATH . 'build/blocks/sf-form-checkbox' );
     }
 
     /**
