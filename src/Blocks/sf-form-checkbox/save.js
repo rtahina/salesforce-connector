@@ -22,8 +22,8 @@ export default function save( { attributes } ) {
 
 	return (
 		<div { ...blockProps }>
-			<label for={ fieldId }>{ label }</label>
 			<input { ...checkboxProps } />
+			<label for={ fieldId }>{ label }</label>
 		</div>
 	);
 }

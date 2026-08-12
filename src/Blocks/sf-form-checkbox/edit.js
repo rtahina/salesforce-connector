@@ -78,8 +78,8 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 			) }
 
 			<div { ...blockProps }>
-				<label for={ fieldId }>{ label }</label>
 				<input { ...checkboxProps } />
+				<label for={ fieldId }>{ label }</label>
 			</div>
 		</Fragment>
 	);
