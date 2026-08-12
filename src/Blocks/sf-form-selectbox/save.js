@@ -24,9 +24,7 @@ export default function save( { attributes } ) {
 			<select { ...selectboxProps }>
 				{ Array.isArray( options ) && options.length > 0 ? (
 					options.map( ( item, index ) => (
-						<option value={ item.value.trim() }>
-							{ item.label.trim() }
-						</option>
+						<option value={ item.value }>{ item.label }</option>
 					) )
 				) : (
 					<option value="">No options available</option>

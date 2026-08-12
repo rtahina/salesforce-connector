@@ -17,13 +17,16 @@ import {
 } from '@wordpress/block-editor';
 import { Fragment, useState } from 'react';
 import { slugify } from '../../Utils/Slugify';
+import { arrayToString } from '../../Utils/arrayToString';
 
 export default function Edit( { attributes, setAttributes, isSelected } ) {
 	const { label, name, options, isRequired } = attributes;
 	const blockProps = useBlockProps( {
 		className: 'rtsc__inner__form__field',
 	} );
-	const [ optionsString, setOptionsString ] = useState( '' );
+	const [ optionsString, setOptionsString ] = useState(
+		arrayToString( options )
+	);
 	const fieldId = 'rtsc-' + slugify( label );
 	const selectboxProps = {
 		id: fieldId,
@@ -33,7 +36,29 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 	};
 
 	const handleSaveButtonClick = ( data ) => {
-		setAttributes( { options: data } );
+		let tmpOptions = [];
+		const optionsRow = optionsString.split( /\r?\n/ );
+		optionsRow.map( ( option, index ) => {
+			let optionLabel = '';
+			let optionValue = '';
+			option = option.trim();
+			const isSplitted = option.includes( ':' );
+			if ( isSplitted ) {
+				[ optionLabel, optionValue ] = option.split( ':' );
+				optionLabel = optionLabel.trim();
+				optionValue = optionValue.trim();
+			} else {
+				optionLabel = option;
+				optionValue = option;
+			}
+
+			tmpOptions.push( {
+				label: optionLabel,
+				value: optionValue,
+			} );
+		} );
+
+		setAttributes( { options: tmpOptions } );
 	};
 
 	return (
@@ -59,6 +84,7 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 						onChange={ ( label ) => setAttributes( { label } ) }
 					/>
 					<TextareaControl
+						__next40pxDefaultSize
 						label={ __(
 							'The List Options',
 							'rtahina-salesforce-connector'
@@ -76,16 +102,7 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 						__next40pxDefaultSize
 						variant="primary"
 						onClick={ () => {
-							let tmpOptions = [];
-							const optionsRow = optionsString.split( /\r?\n/ );
-							optionsRow.map( ( option, index ) => {
-								const [ label, value ] = option.split( ':' );
-								tmpOptions.push( {
-									label: label,
-									value: value,
-								} );
-							} );
-							handleSaveButtonClick( tmpOptions );
+							handleSaveButtonClick( optionsString );
 						} }
 					>
 						Save Options
@@ -109,9 +126,7 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 				<select { ...selectboxProps }>
 					{ Array.isArray( options ) && options.length > 0 ? (
 						options.map( ( item, index ) => (
-							<option value={ item.value.trim() }>
-								{ item.label.trim() }
-							</option>
+							<option value={ item.value }>{ item.label }</option>
 						) )
 					) : (
 						<option value="">No options available</option>
