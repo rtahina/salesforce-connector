@@ -9,7 +9,11 @@ import { Fragment } from 'react';
 export default function Edit( { attributes, setAttributes } ) {
 	const { heading, content } = attributes;
 	const blockProps = useBlockProps();
-	const ALLOWED_BLOCKS = [ 'rtsc/sf-form-input', 'rtsc/sf-form-checkbox' ];
+	const ALLOWED_BLOCKS = [
+		'rtsc/sf-form-input',
+		'rtsc/sf-form-checkbox',
+		'rtsc/sf-form-selectbox',
+	];
 	const DEFAULT_CONTENT = [
 		[
 			'rtsc/sf-form-input',

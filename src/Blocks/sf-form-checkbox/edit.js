@@ -57,9 +57,7 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 					<ToggleControl
 						__next40pxDefaultSize
 						label="Is This Checked by Default"
-						help={
-							isChecked ? 'Is checked.' : 'Is not checked.'
-						}
+						help={ isChecked ? 'Is checked.' : 'Is not checked.' }
 						checked={ isChecked }
 						onChange={ ( value ) => {
 							setAttributes( { isChecked: value } );
