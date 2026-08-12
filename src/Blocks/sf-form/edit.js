@@ -5,8 +5,12 @@
 import { __ } from '@wordpress/i18n';
 import { RichText, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { Fragment } from 'react';
+import { errorNotice, removeNotice } from '../../utils/notices';
+import { lockSaving, unlockSaving } from '../../utils/lock';
+import { useSelect } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { heading, content } = attributes;
 	const blockProps = useBlockProps();
 	const ALLOWED_BLOCKS = [
@@ -26,6 +30,28 @@ export default function Edit( { attributes, setAttributes } ) {
 			},
 		],
 	];
+
+	const innerBlocks = useSelect(
+		( select ) => select( 'core/block-editor' ).getBlocks( clientId ),
+		[ clientId ]
+	);
+
+	useEffect( () => {
+		removeNotice( 'rtsc-form-empty' );
+		if ( innerBlocks.length === 0 ) {
+			lockSaving( 'rtsc-form-required-block' );
+			errorNotice(
+				'The SalesForce form must have at least one field',
+				'rtsc-form-empty'
+			);
+		} else {
+			unlockSaving( 'rtsc-form-required-block' );
+		}
+
+		return () => {
+			unlockSaving( 'rtsc-form-required-block' );
+		};
+	}, [ innerBlocks.length ] );
 
 	return (
 		<Fragment>
