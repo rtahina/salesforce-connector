@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rtsc/sf-form-checkbox",
+	"version": "1.0.0",
+	"title": "SalesForce Form Checkbox Field",
+	"category": "rtsc-blocks",
+	"icon": "text",
+	"description": "Inserts a Checkbox Field Block. Only available in a SalesForce Form block.",
+	"example": {},
+	"supports": {},
+	"parent": [ "rtsc/sf-form" ],
+	"attributes": {
+		"name": {
+			"type": "string",
+			"default": "name"
+		},
+		"label": {
+			"type": "string",
+			"default": "Input Label"
+		},
+		"isChecked": {
+			"type": "boolean",
+			"default": false
+		},
+		"isRequired": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"textdomain": "rtahina-salesforce-connector",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

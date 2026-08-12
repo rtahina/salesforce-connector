@@ -7,7 +7,7 @@
  * Author URI:      https://tahina.dev/
  * Text Domain:     rtahina-salesforce-connector
  * Domain Path:     /languages
- * Version:         0.1.0
+ * Version:         0.2.0
  * Requires PHP:    8.0 or higher
  *
  * @category WordPress_Plugin

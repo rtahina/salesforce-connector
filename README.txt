@@ -27,5 +27,8 @@ Clone this repository or [download](https://github.com/rtahina/salesforce-connec
 
 == Changelog ==
 
+= 0.2.0 =
+* Added form and field blocks
+
 = 0.1.0 =
 * Basic connection to a SalesForce instance

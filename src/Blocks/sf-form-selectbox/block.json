@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rtsc/sf-form-selectbox",
+	"version": "1.0.0",
+	"title": "SalesForce Form Selectbox Field",
+	"category": "rtsc-blocks",
+	"icon": "text",
+	"description": "Inserts a selectbox Field Block. Only available in a SalesForce Form block.",
+	"example": {},
+	"supports": {},
+	"parent": [ "rtsc/sf-form" ],
+	"attributes": {
+		"name": {
+			"type": "string",
+			"default": "name"
+		},
+		"label": {
+			"type": "string",
+			"default": "Field Label"
+		},
+		"options": {
+			"type": "array",
+			"default": [ { "label": "Select an item", "value": "" } ]
+		},
+		"isRequired": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"textdomain": "rtahina-salesforce-connector",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}
