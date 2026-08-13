@@ -1,3 +1,9 @@
 /**
  * Form Input Block - Back-end Styles
  */
+.rtsc__inner__form__field {
+    input:not([type="checkbox"]) {
+        padding: 6px 12px;
+        border:1px solid var(--wp-components-color-gray-600);
+    }
+}

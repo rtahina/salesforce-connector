@@ -1,3 +1,9 @@
 /**
  * Form Selectbox Block - Back-end Styles
  */
+.rtsc__inner__form__field {
+    select {
+        padding: 6px 12px;
+        border:1px solid var(--wp-components-color-gray-600);
+    }
+}
