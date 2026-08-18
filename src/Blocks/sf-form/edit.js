@@ -57,10 +57,12 @@ export default function Edit( {
 				__('The SalesForce form must have at least one field', 'rtahina-salesforce-connector'),
 				'rtsc-form-empty'
 			);
+			return;
 		} else {
 			innerBlocks.map((block) => {
 				if(block.name === 'rtsc/sf-form-input' && block.attributes.type === 'email') {
 					hasEmailBlock = true;
+					return;
 				}
 			});
 			if (hasEmailBlock === false) {
@@ -69,6 +71,7 @@ export default function Edit( {
 					__('The SalesForce form must have one email field', 'rtahina-salesforce-connector'),
 					'rtsc-form-empty'
 				);
+				return;
 			}
 			unlockSaving( 'rtsc-form-required-block' );
 		}
@@ -76,7 +79,7 @@ export default function Edit( {
 		return () => {
 			unlockSaving( 'rtsc-form-required-block' );
 		};
-	}, [ innerBlocks.length ] );
+	}, [ innerBlocks ] );
 
 	return (
 		<Fragment>
