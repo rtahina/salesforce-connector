@@ -3,15 +3,26 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import { RichText, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { TextControl, ToggleControl } from '@wordpress/components';
+import {
+	RichText,
+	InnerBlocks,
+	useBlockProps,
+	InspectorControls,
+} from '@wordpress/block-editor';
 import { Fragment } from 'react';
 import { errorNotice, removeNotice } from '../../utils/notices';
 import { lockSaving, unlockSaving } from '../../utils/lock';
 import { useSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 
-export default function Edit( { attributes, setAttributes, clientId } ) {
-	const { heading, content } = attributes;
+export default function Edit( {
+	attributes,
+	setAttributes,
+	clientId,
+	isSelected,
+} ) {
+	const { heading, content, submitButtonLabel } = attributes;
 	const blockProps = useBlockProps();
 	const ALLOWED_BLOCKS = [
 		'rtsc/sf-form-input',
@@ -55,6 +66,21 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 	return (
 		<Fragment>
+			{ isSelected && (
+				<InspectorControls>
+					<TextControl
+						__next40pxDefaultSize
+						label={ __(
+							'The submit button label',
+							'rtahina-salesforce-connector'
+						) }
+						value={ submitButtonLabel }
+						onChange={ ( submitButtonLabel ) =>
+							setAttributes( { submitButtonLabel } )
+						}
+					/>
+				</InspectorControls>
+			) }
 			<section { ...blockProps }>
 				<div className="rtsc__inner">
 					<div className="rtsc__inner__content">
@@ -94,6 +120,9 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 									template={ DEFAULT_CONTENT }
 									className="rtsc__inner__form__fields"
 								/>
+								<button type="submit">
+									{ submitButtonLabel }
+								</button>
 							</form>
 						</div>
 					</div>

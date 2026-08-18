@@ -5,7 +5,7 @@
 import { RichText, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
-	const { heading, content } = attributes;
+	const { heading, content, submitButtonLabel } = attributes;
 	const blockProps = useBlockProps.save( {
 		'aria-labelledby': 'rtsc-form-heading',
 	} );
@@ -30,6 +30,7 @@ export default function save( { attributes } ) {
 							<div className="rtsc__inner__form__fields">
 								<InnerBlocks.Content />
 							</div>
+							<button type="submit">{ submitButtonLabel }</button>
 						</form>
 					</div>
 				</div>
