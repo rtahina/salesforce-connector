@@ -49,13 +49,27 @@ export default function Edit( {
 
 	useEffect( () => {
 		removeNotice( 'rtsc-form-empty' );
+		let hasEmailBlock = false;
+
 		if ( innerBlocks.length === 0 ) {
 			lockSaving( 'rtsc-form-required-block' );
 			errorNotice(
-				'The SalesForce form must have at least one field',
+				__('The SalesForce form must have at least one field', 'rtahina-salesforce-connector'),
 				'rtsc-form-empty'
 			);
 		} else {
+			innerBlocks.map((block) => {
+				if(block.name === 'rtsc/sf-form-input' && block.attributes.type === 'email') {
+					hasEmailBlock = true;
+				}
+			});
+			if (hasEmailBlock === false) {
+				lockSaving( 'rtsc-form-required-block' );
+				errorNotice(
+					__('The SalesForce form must have one email field', 'rtahina-salesforce-connector'),
+					'rtsc-form-empty'
+				);
+			}
 			unlockSaving( 'rtsc-form-required-block' );
 		}
 
