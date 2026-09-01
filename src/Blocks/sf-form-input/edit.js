@@ -59,6 +59,7 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 							'The Input Name',
 							'rtahina-salesforce-connector'
 						) }
+						help="Spaces will be replaced by dashes (-)."
 						value={ name }
 						onChange={ ( name ) => setAttributes( { name } ) }
 					/>

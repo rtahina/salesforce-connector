@@ -2,8 +2,9 @@
  * Form Input Block - Save
  */
 
-import { RichText, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { slugify } from '../../Utils/Slugify';
+import { sanitizeWithDash } from '../../Utils/sanitizeWithDash';
 
 export default function save( { attributes } ) {
 	const { label, type, name, placeholder, isRequired } = attributes;
@@ -15,7 +16,7 @@ export default function save( { attributes } ) {
 		type: type,
 		id: fieldId,
 		className: 'rtsc__inner__form__field__text',
-		name: name,
+		name: sanitizeWithDash( name ),
 		placeholder: placeholder,
 		required: isRequired,
 	};

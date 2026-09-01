@@ -43,6 +43,7 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 							'rtahina-salesforce-connector'
 						) }
 						value={ name }
+						help="Spaces will be replaced by dashes (-)."
 						onChange={ ( name ) => setAttributes( { name } ) }
 					/>
 					<TextControl

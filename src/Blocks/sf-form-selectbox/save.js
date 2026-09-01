@@ -2,8 +2,9 @@
  * Form Selectbox Block - Save
  */
 
-import { RichText, InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { slugify } from '../../Utils/Slugify';
+import { sanitizeWithDash } from '../../Utils/sanitizeWithDash';
 
 export default function save( { attributes } ) {
 	const { label, name, options, isRequired } = attributes;
@@ -14,7 +15,7 @@ export default function save( { attributes } ) {
 	const selectboxProps = {
 		id: fieldId,
 		className: 'rtsc__inner__form__field__selectbox',
-		name: name,
+		name: sanitizeWithDash( name ),
 		required: isRequired,
 	};
 
