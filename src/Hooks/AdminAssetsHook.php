@@ -14,7 +14,7 @@ use RTahina\SalesforceConnector\Contracts\HookContract;
  *
  * @since 1.0.0
  */
-final class AssetsHook implements HookContract {
+final class AdminAssetsHook implements HookContract {
     // phpcs:disable Squiz.Commenting.FunctionComment.Missing
     private function __construct() {
         // phpcs:enable
