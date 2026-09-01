@@ -19,6 +19,10 @@
     "content": {
       "type": "string",
       "default": "SalesForce Form Description."
+    },
+    "submitButtonLabel": {
+      "type": "string",
+      "default": "Send"
     }
   },
   "textdomain": "rtahina-salesforce-connector",
